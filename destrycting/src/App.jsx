@@ -5,7 +5,7 @@ function App() {
   let obj = {
     name: "yash",
     age : 20,
-    study : "9th",
+    study : "12th",
     state:[
       { name:"india"},
       { name : "canada"}
