@@ -21,7 +21,7 @@ class Data extends Component {
 
         return (
             <div style={{ margin: 'auto', width: '80%' }}>
-                <h1>DATA</h1>
+                <h1>STUDENT DATA</h1>
                 <table style={{ width: '100%', borderCollapse: 'collapse',}} border={3} cellPadding={55}  >
                     <thead>
                         <tr>
