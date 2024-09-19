@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-// Functional component for rendering individual rows
 const TableRow = ({ data }) => {
     const { grid, name, email, password, course, city } = data;
     return (
