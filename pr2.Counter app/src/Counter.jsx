@@ -10,13 +10,13 @@ const Counter = () => {
             alignItems: 'center',
             justifyContent: 'center',
             height: '100vh',
-            backgroundColor: '#e0f7fa', // Light teal background
+            backgroundColor: '#e0f7fa', 
             fontFamily: 'Arial, sans-serif',
-            color: '#004d40', // Dark teal text
-            padding: '20px', // Added padding for breathing room
+            color: '#004d40', 
+            padding: '20px',
         },
         box: {
-            background: 'linear-gradient(135deg, #00796b, #004d40)', // Unique gradient background
+            background: 'linear-gradient(135deg, #00796b, #004d40)', 
             borderRadius: '20px',
             padding: '40px',
             boxShadow: '0 8px 20px rgba(0, 0, 0, 0.3)',
@@ -29,30 +29,30 @@ const Counter = () => {
         title: {
             fontSize: '2.5rem',
             marginBottom: '20px',
-            color: '#ffffff', // White title for contrast
+            color: '#ffffff',
         },
         heading: {
             fontSize: '4rem',
             margin: '20px 0',
-            color: '#ffffff', // White counter number for contrast
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Shadow for text depth
+            color: '#ffffff',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', 
         },
         button: {
-            background: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white
-            color: '#004d40', // Dark teal text
+            background: 'rgba(255, 255, 255, 0.8)', 
+            color: '#004d40',
             border: 'none',
-            borderRadius: '30px', // More rounded corners
-            padding: '15px 30px', // Larger padding
+            borderRadius: '30px', 
+            padding: '15px 30px', 
             margin: '10px',
             fontSize: '1.5rem',
             cursor: 'pointer',
             transition: 'background 0.3s, transform 0.2s',
             outline: 'none',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', // Shadow for depth
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', 
         },
         buttonHover: {
-            transform: 'scale(1.05)', // Slightly enlarge on hover
-            background: 'rgba(255, 255, 255, 1)', // Fully opaque on hover
+            transform: 'scale(1.05)', 
+            background: 'rgba(255, 255, 255, 1)', 
         },
         texture: {
             position: 'absolute',
@@ -60,7 +60,7 @@ const Counter = () => {
             left: '0',
             right: '0',
             bottom: '0',
-            background: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")', // Subtle texture
+            background: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")',
             opacity: '0.1',
             pointerEvents: 'none',
         },
