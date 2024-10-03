@@ -19,7 +19,7 @@ const Product = ({ category, item, categoryButtonClick, filterdata }) => {
 
             </div>
             <div className="item mt-5">
-                <div className='row justify-content-cetner'>
+                <div className='row justify-content-cetner me-0'>
 
                     {
                         filterdata.length != 0 ? (
