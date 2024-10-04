@@ -1,82 +1,53 @@
-
 import React from 'react';
 
-const Product = ({ category, item, categoryButtonClick, filterdata }) => {
+function Product({ category, filterdata, categoryButtonClick }) {
+  return (
+    <div className="container">
+      {/* Category buttons with padding and styling */}
+      <div className="btn-group mb-4" role="group" aria-label="Category filters">
+        {category.map((cat, index) => (
+          <button
+            key={index}
+            className="btn btn-outline-primary mx-1"
+            onClick={() => categoryButtonClick(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-    return (
-        <>
-
-            <div align="center">
-
-                {
-                    category.map((cat) => {
-                        const { id, name } = cat;
-                        return (
-                            <button onClick={() => categoryButtonClick(cat.name)}>{name}</button>
-                        )
-                    })
-                }
-
-            </div>
-            <div className="item mt-5">
-                <div className='row justify-content-cetner me-0'>
-
-                    {
-                        filterdata.length != 0 ? (
-                            <>
-                                {
-                                    filterdata.map((pr) => {
-
-                                        return (
-                                            <>
-                                                <div className="col-md-3 card p-2 ">
-                                                    <img src={pr.image} style={{ objectFit: "contain", height: "200px" }} />
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{pr.name}</h5>
-                                                        <p className="card-text">{pr.price}</p>
-                                                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                                                    </div>
-                                                </div>
-
-                                            </>
-                                        )
-
-
-                                    })
-                                }
-                            </>
-                        )
-                            : (
-                                <>
-                                    {
-                                        item.map((pr) => {
-                                            return (
-                                                <>
-                                                    <div className="col-md-3 card p-2" >
-                                                        <img src={pr.image} style={{ objectFit: "contain", height: "200px" }} />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">{pr.name}</h5>
-                                                            <p className="card-text">{pr.price}</p>
-                                                            <a href="#" className="btn btn-primary">Go somewhere</a>
-                                                        </div>
-                                                    </div>
-
-                                                </>
-                                            )
-                                        })
-                                    }
-                                </>
-                            )
-                    }
-
+      {/* Cards for filtered products */}
+      <div className="row">
+        {filterdata.length > 0 ? (
+          filterdata.map((product, index) => (
+            <div key={index} className="col-md-4 mb-4">
+              <div className="card h-100 shadow-sm">
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.name}
+                  style={{ height: '200px', objectFit: 'cover' }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title text-center">{product.name}</h5>
+                  <p className="card-text text-muted text-center">{product.description}</p>
+                  <div className="mt-auto">
+                    <p className="card-text text-center">
+                      <b>Category:</b> {product.category}
+                    </p>
+                  </div>
                 </div>
+              </div>
             </div>
-
-        </>
-    )
-
+          ))
+        ) : (
+          <div className="col-12 text-center">
+            <p className="text-muted">No products found for the selected category.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-
 export default Product;
-

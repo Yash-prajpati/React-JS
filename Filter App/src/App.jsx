@@ -1,43 +1,37 @@
-import { useState } from "react"
-import { category, item } from "./Data";
+import { useState } from "react";
+import { category, item } from "./Data"; 
 import Product from "./Product";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  const [filterdata, setFilterdata] = useState([]);
+  const [filterdata, setFilterdata] = useState(item);
 
+ 
   const categoryButtonClick = (cat) => {
-    if (cat == "All") {
-      setFilterdata(item);
+    if (cat === "All") {
+      setFilterdata(item);  
+    } else {
+      const filteredItems = item.filter((product) => product.category === cat);
+      setFilterdata(filteredItems);
     }
-    else {
-      let up = item.filter((Product) => {
-        return Product.category == cat;
-      })
-      setFilterdata(up)
-    }
-  }
+  };
 
   return (
     <>
       <div align="center">
         <h1>Filter App</h1>
 
+ 
         <Product
-
           category={category}
-          item={item}
-          categoryButtonClick={categoryButtonClick}
           filterdata={filterdata}
-
+          categoryButtonClick={categoryButtonClick}
         />
       </div>
-
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
