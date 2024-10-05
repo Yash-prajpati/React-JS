@@ -3,7 +3,7 @@ import React from 'react';
 function Product({ category, filterdata, categoryButtonClick }) {
   return (
     <div className="container">
-      {/* Category buttons with padding and styling */}
+      
       <div className="btn-group mb-4" role="group" aria-label="Category filters">
         {category.map((cat, index) => (
           <button
@@ -16,7 +16,7 @@ function Product({ category, filterdata, categoryButtonClick }) {
         ))}
       </div>
 
-      {/* Cards for filtered products */}
+      
       <div className="row">
         {filterdata.length > 0 ? (
           filterdata.map((product, index) => (
