@@ -1,0 +1,60 @@
+/* Styling for the overall screen with background image */
+.login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('your-background-image-url.jpg'); /* Add your image URL */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Styling for the form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+/* Input field styling with a new color theme */
+.input-field {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+  width: 100%;
+  border: 1px solid #888; /* Softer border color */
+  border-radius: 10px;
+  background-color: #f0f0f0; /* Light gray background for the input */
+  color: #333; /* Darker text color */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Button styling with a new color */
+.login-button {
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  background-color: #4CAF50; /* Green button color */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .login-form {
+    width: 90%;
+  }
+}
