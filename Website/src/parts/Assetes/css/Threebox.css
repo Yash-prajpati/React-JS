@@ -2,8 +2,9 @@
     background-image: url('../img/first-box.jpg');
     background-size: cover;
     padding: 35px 24px;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 100px;
+    margin-top: 50px;
+   
     border-radius: 5px;
 }
 .box .first-box h3{
