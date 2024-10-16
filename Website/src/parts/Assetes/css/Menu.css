@@ -1,51 +1,112 @@
-ul,li,a{
-    text-decoration: none;
-    list-style: none;
+.filterBox {
+   
+    flex-direction: column;
+    gap: 15px;
+    margin-right: 20px;
+}
+
+.filter-btn {
+    background-color: #f6f5f5;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    margin-bottom: 5px;
     
-}
-.menu .mini-menu li{
-    padding: 20px 0;
-    font-size: 16px;
-    border: 1px solid rgb(222, 221, 221);
     text-align: center;
-    color: #000000;
+    cursor: pointer;
+    font-size: 16px;
     font-weight: 500;
-    margin: 5px 0;
-    border-radius: 5px;
-    background-color: rgb(246, 246, 246);
-}
-.menu{
-    margin: 30px 0;
+    color: #333;
+    transition: all 0.3s ease;
+    width: 100%;
+    border-radius: 8px;
 }
 
-.menu .mini-menu li span{
-    font-size: 12px;
+.filter-btn:hover {
+    /* background-color: #3e7f6d; */
+    color: #3e7f6d;
+    border: 2px solid #3e7f6d;
+}
 
-    color: #7a7a7a;
-    font-weight: 400;
+/* Image Section Styling */
+.filterImg {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
-.menu .menu-img {
-    background-image: url('../img/3.jpg');
-    border-radius: 5px;
-    background-size: cover;
+
+.filterImg img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
-.menu .menu-img h4{
-    font-size: 54px;
+
+.filterImg:hover img {
+    transform: scale(1.05);
+}
+.img-title {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+  
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.img-subtitle {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #fff;
+  
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Button Inside Image */
+.shop-now-btn1 {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3e7f6d;
     color: white;
-    display: inline-flex;
-    padding: 20px ;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.menu .menu-img .bottom{
-    margin-bottom: 70px;
+.filterImg1 {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
-.menu .menu-img2 {
-    background-image: url('../img/4.jpg');
-    border-radius: 5px;
-    background-size: cover;
+
+.filterImg1 img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
-.menu .menu-img2 h4{
-    font-size: 54px;
-    color: white;
-    display: inline-flex;
-    padding: 20px ;
+
+.filterImg1:hover img {
+    transform: scale(1.05);
+}
+
+.shop-now-btn1:hover {
+    background-color: #2e6554;
+}
+.filterImg1{
+    margin-left: 20px;
 }

@@ -3,49 +3,52 @@ import '../parts/Assetes/css/Menu.css'
 
 export default function Menu() {
   return (
-    <div>
-      
+    <>
+    <div className="container d-flex justify-content-between filter-section">
 
-        {/* menu start  */}
+        
 
-
-        <section className='menu'>
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                      <div className="mini-menu" >
-                          <ul>
-                            <li style={{color:"#64b496"}}>Cake & Milk <br /><span>(65 item)</span></li>
-                            <li>Fresh Meat <br /><span>(30 item)</span></li>
-                            <li>Vegetables <br /><span>(25 item)</span></li>
-                            <li>Apple & Mango <br /><span>(45 item)</span></li>
-                            <li>Strawberry <br /><span>(68 item)</span></li>
-                            <li style={{color:"#64b496"}}>View More</li>
-                          </ul>
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="menu-img" style={{width:"415px",height:"539px"}}>
-                          <h4>50 <span style={{fontSize:"19px",marginTop:"35px"}}>% off</span></h4>
-                          <div className='bottom'>
-                            <h5>Cake</h5>
-                            <button>Shop Now</button>
-                          </div>
-                      </div>
-                    </div>
-                    <div className="col-4">
-                    <div className="menu-img2" style={{width:"415px",height:"539px"}}>
-                          <h4>50 <span style={{fontSize:"19px",marginTop:"35px"}}>% off</span></h4>
-                      </div>
-                    </div>
-                </div>
+        <div className="col-4">
+            <div className="filterBox">
+                <button className="filter-btn"><p>Cake & Milk</p>
+                    <span>(69 items)</span>
+                </button>
+                <button className="filter-btn"><p>Fresh Meat</p>
+                    <span>(30 items)</span>
+                </button>
+                <button className="filter-btn"><p>Vegetables</p>
+                    <span>(25 items)</span>
+                </button>
+                <button className="filter-btn"><p>Apple & Mango</p>
+                    <span>(45 items)</span>
+                </button>
+                <button className="filter-btn"><p>Strawberry</p>
+                    <span>(68 items)</span>
+                </button>
+                <button className="filter-btn"><p>View More</p></button>
             </div>
-        </section>
+        </div>
 
+      
+        <div className="col-4">
+            <div className="filterImg position-relative">
+                <img src="https://maraviyainfotech.com/projects/carrot/carrot-v2/carrot-html/assets/img/categories/3.jpg" alt="category1" />
+                <h2 className="img-title">33% off</h2>
+                <h3 className="img-subtitle">Cake</h3>
+                <button className="shop-now-btn1">Shop Now</button>
+            </div>
+        </div>
 
-        {/* menu end  */}
-
-
+      
+        <div className="col-4">
+            <div className="filterImg1 position-relative">
+                <img src="https://maraviyainfotech.com/projects/carrot/carrot-v2/carrot-html/assets/img/categories/4.jpg" alt="category2" />
+                <h2 className="img-title">33% off</h2>
+                <h3 className="img-subtitle">Milk</h3>
+                <button className="shop-now-btn1">Shop Now</button>
+            </div>
+        </div>
     </div>
+</>   
   )
 }

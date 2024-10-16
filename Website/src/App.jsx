@@ -4,6 +4,9 @@ import 'bootstrap/dist/js/bootstrap.js'
 import Nav from "./parts/Nav"
 import Banner from "./parts/Banner"
 import Menu from "./parts/Menu"
+import Product from "./parts/Product"
+import Threebox from "./parts/Threebox"
+import Fourbox from "./parts/Fourbox"
 
 
 
@@ -14,6 +17,9 @@ function App() {
     <Header/>
     <Banner/>
     <Menu/>
+    <Product/>
+    <Threebox/>
+    <Fourbox/>
     </>
   )
 }
