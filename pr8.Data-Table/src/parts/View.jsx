@@ -1,3 +1,4 @@
+// View.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -62,7 +63,7 @@ export default function View() {
 
   return (
     <div>
-      <Link to="/">Add</Link>
+      <Link to="/Add">Add</Link>
 
       <div className="container mt-5">
         <h2>Record List</h2>
@@ -121,8 +122,8 @@ export default function View() {
                       Delete
                     </button>
                     <button
-                      onClick={() => navigate('/Edit', { state: { record, index } })}
-                      className="btn btn-primary ms-2" >
+                      onClick={() => navigate('/Add', { state: { record, index } })}
+                      className="btn btn-primary ms-2">
                       Edit
                     </button>
                   </td>

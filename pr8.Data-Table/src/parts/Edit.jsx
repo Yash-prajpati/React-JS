@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// Add.jsx
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../parts/Add.css';
 
 export default function Add() {
+  const { state } = useLocation();  // Get the passed state (record and index)
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -10,22 +14,41 @@ export default function Add() {
   const [gender, setGender] = useState('');
   const [course, setCourse] = useState('');
   const [status, setStatus] = useState('');
-  const [allrecord,setAllRecord]=useState([])
 
-  const handelbar = (e) => {
+  useEffect(() => {
+    if (state) {
+      const { record } = state;  // Extract record from passed state
+      setName(record.name);
+      setEmail(record.email);
+      setPass(record.pass);
+      setDate(record.date);
+      setGender(record.gender);
+      setCourse(record.course);
+      setStatus(record.status);
+    }
+  }, [state]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const newRecord = { name, email, pass, date, gender, course, status };
 
-
     const storedRecords = JSON.parse(localStorage.getItem('records')) || [];
+    let updatedRecords;
 
-    const updatedRecords = [...storedRecords, newRecord];
+    if (state) {
+      // If editing, update the record at the passed index
+      updatedRecords = storedRecords.map((record, index) =>
+        index === state.index ? newRecord : record
+      );
+    } else {
+      // If adding, add the new record
+      updatedRecords = [...storedRecords, newRecord];
+    }
 
-    
     localStorage.setItem('records', JSON.stringify(updatedRecords));
 
-   
+    // Reset the form fields
     setName('');
     setEmail('');
     setPass('');
@@ -34,7 +57,8 @@ export default function Add() {
     setCourse('');
     setStatus('');
 
-    alert("Record added successfully!");
+    alert(state ? 'Record updated successfully!' : 'Record added successfully!');
+    navigate('/View');  // Navigate to View page after submission
   };
 
   return (
@@ -44,8 +68,8 @@ export default function Add() {
       <section>
         <div className="container mt-5">
           <div className="card" style={{ backgroundColor: '#3c3c50', color: 'white', boxShadow: '0px 0px 4px 1px white', borderRadius: '10px' }}>
-            <h2 className="card-title">Simple Form</h2>
-            <form onSubmit={handelbar}>
+            <h2 className="card-title">{state ? 'Edit Record' : 'Add Record'}</h2>
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <h6 style={{ textAlign: 'left' }}>Name</h6>
                 <input type="text" className="form-control" id="name" placeholder="Enter your name" style={{ backgroundColor: '#5e5e6f', boxShadow: '0px 0px 5px 0px white', border: 'none', color: 'white' }} onChange={(e) => setName(e.target.value)} value={name} />
@@ -86,7 +110,7 @@ export default function Add() {
                 <input type="text" className="form-control" id="status" placeholder="Enter your status" style={{ backgroundColor: '#5e5e6f', boxShadow: '0px 0px 5px 0px white', border: 'none', color: 'white' }} onChange={(e) => setStatus(e.target.value)} value={status} />
               </div>
 
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">{state ? 'Update' : 'Submit'}</button>
             </form>
           </div>
         </div>
