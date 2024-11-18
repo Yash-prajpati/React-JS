@@ -122,7 +122,7 @@ export default function View() {
                       Delete
                     </button>
                     <button
-                      onClick={() => navigate('/Add', { state: { record, index } })}
+                      onClick={() => navigate('/Edit', { state: { record, index } })}
                       className="btn btn-primary ms-2">
                       Edit
                     </button>
