@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const App = () => {
     const [products, setProducts] = useState([]);
@@ -8,7 +8,7 @@ const App = () => {
         fetch(`https://dummyjson.com/products`)
             .then(response => response.json())
             .then(AllProducts => {
-                setProducts(AllProducts.products); // Update state with the fetched products
+                setProducts(AllProducts.products); 
             });
     };
 
