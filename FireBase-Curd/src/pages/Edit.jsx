@@ -1,24 +1,33 @@
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 import { app } from "../../firebase.js";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Add() {
+function Edit() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const [editid, setEditId] = useState("");
+
+    useEffect(() => {
+        setEditId(location?.state[0]);
+        setName(location?.state[1]?.name);
+        setPhone(location?.state[1]?.phone);
+    }, [location?.state]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const db = getDatabase(app);
-        let id = Math.floor(Math.random() * 100000);
-        set(ref(db, `users/${id}`), {
+
+        const user = ref(db, `users/${editid}`);
+        update(user, {
             name: name,
             phone: phone,
         });
-        alert("Record added successfully!");
-        setName("");
-        setPhone("");
+        alert("Record updated successfully!");
+        navigate(`/`);
     };
 
     return (
@@ -30,12 +39,12 @@ function Add() {
                         style={{ borderRadius: "15px", overflow: "hidden" }}
                     >
                         <div
-                            className="card-header text-center text-white bg-primary"
+                            className="card-header text-center text-white bg-secondary"
                             style={{
                                 borderBottom: "4px solid #444",
                             }}
                         >
-                            <h2 className="fw-bold">Add New Record</h2>
+                            <h2 className="fw-bold">Edit Record</h2>
                         </div>
                         <div
                             className="card-body"
@@ -73,13 +82,13 @@ function Add() {
                                 <div className="d-grid">
                                     <button
                                         type="submit"
-                                        className="btn btn-primary text-white fw-bold"
+                                        className="btn btn-secondary text-white fw-bold"
                                         style={{
                                             borderRadius: "30px",
                                             boxShadow: "0px 6px 10px rgba(0, 0, 0, 0.2)",
                                         }}
                                     >
-                                        Add Record
+                                        Update Record
                                     </button>
                                 </div>
                             </form>
@@ -95,7 +104,7 @@ function Add() {
                             <Link
                                 to={`/`}
                                 className="btn btn-link text-decoration-none"
-                                style={{ fontWeight: "bold", color: "#0d6efd" }}
+                                style={{ fontWeight: "bold", color: "#6c757d" }}
                             >
                                 View Records
                             </Link>
@@ -107,4 +116,4 @@ function Add() {
     );
 }
 
-export default Add;
+export default Edit;
