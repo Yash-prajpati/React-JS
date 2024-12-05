@@ -72,7 +72,7 @@ const Edit = () => {
                                     <button type="submit" className="btn btn-primary">
                                         Update
                                     </button>
-                                    <Link to="/" className="btn btn-secondary">
+                                    <Link to="/Table" className="btn btn-secondary">
                                         View Records
                                     </Link>
                                 </div>
