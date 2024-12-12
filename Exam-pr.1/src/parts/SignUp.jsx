@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Signup({ onSignup }) {
+function Signup({ onSignup, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ function Signup({ onSignup }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSignup({ email, password });
-    navigate("/add");
+    navigate("/add"); // Redirect to the "Add" page after signup
   };
 
   return (
@@ -24,9 +24,7 @@ function Signup({ onSignup }) {
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="form-label">Email</label>
                   <input
                     type="email"
                     className="form-control"
@@ -37,9 +35,7 @@ function Signup({ onSignup }) {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
+                  <label htmlFor="password" className="form-label">Password</label>
                   <input
                     type="password"
                     className="form-control"
@@ -50,11 +46,18 @@ function Signup({ onSignup }) {
                   />
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-primary">
-                    Signup
-                  </button>
+                  <button type="submit" className="btn btn-primary">Signup</button>
                 </div>
               </form>
+              <p className="mt-3 text-center">
+                Already have an account?{" "}
+                <button
+                  className="btn btn-link"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </button>
+              </p>
             </div>
           </div>
         </div>
