@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"; // Make sure you have Bootstrap installed
 
-function View({ data, onDelete }) {
+function View({ data, onDelete, onToggleStatus }) {
   const navigate = useNavigate();
 
   const handleDelete = (index) => {
@@ -9,30 +10,34 @@ function View({ data, onDelete }) {
   };
 
   const handleEdit = (index) => {
-    // Navigate to the Edit page and pass the data and index
     navigate("/edit", { state: { index, data: data[index] } });
+  };
+
+  const handleToggleStatus = (index) => {
+    onToggleStatus(index);
   };
 
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card">
-            <div className="card-header text-center">
-              <h2>View Data</h2>
+        <div className="col-md-10">
+          <div className="card shadow-sm">
+            <div className="card-header text-center bg-primary text-white">
+              <h3>View Data</h3>
             </div>
             <div className="card-body">
               {data.length === 0 ? (
-                <p>No data available</p>
+                <p className="text-center">No data available.</p>
               ) : (
-                <table className="table table-bordered">
+                <table className="table table-striped table-hover">
                   <thead>
                     <tr>
-                      <th>Id</th>
+                      <th>#</th>
                       <th>Name</th>
                       <th>Username</th>
                       <th>Email</th>
                       <th>Phone</th>
+                      <th>Status</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -45,17 +50,32 @@ function View({ data, onDelete }) {
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
                         <td>
+                          <span
+                            className={`badge ${
+                              item.isActive ? "bg-success" : "bg-danger"
+                            }`}
+                          >
+                            {item.isActive ? "Active" : "Inactive"}
+                          </span>
+                        </td>
+                        <td>
                           <button
-                            className="btn btn-warning btn-sm"
-                            onClick={() => handleEdit(index)} // Navigate to Edit
+                            className="btn btn-warning btn-sm me-2"
+                            onClick={() => handleEdit(index)} // Edit button
                           >
                             Edit
                           </button>
                           <button
-                            className="btn btn-danger btn-sm ml-2"
+                            className="btn btn-danger btn-sm me-2"
                             onClick={() => handleDelete(index)} // Delete button
                           >
                             Delete
+                          </button>
+                          <button
+                            className="btn btn-info btn-sm"
+                            onClick={() => handleToggleStatus(index)} // Toggle status button
+                          >
+                            {item.isActive ? "Deactivate" : "Activate"}
                           </button>
                         </td>
                       </tr>
@@ -63,9 +83,9 @@ function View({ data, onDelete }) {
                   </tbody>
                 </table>
               )}
-              <div className="d-grid">
+              <div className="d-grid mt-4">
                 <button
-                  className="btn btn-primary mt-3"
+                  className="btn btn-primary"
                   onClick={() => navigate("/add")}
                 >
                   Add More Data
