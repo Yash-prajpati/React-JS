@@ -4,6 +4,7 @@ import Signup from "./parts/SignUp";
 import Login from "./parts/Login";
 import Add from "./parts/Add";
 import View from "./parts/View";
+import Edit from "./parts/Edit";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -27,7 +28,7 @@ function App() {
   };
 
   const handleAddData = (newData) => {
-    const updatedData = [...data, newData];
+    const updatedData = [...data, { ...newData, isActive: true }];
     setData(updatedData);
     localStorage.setItem("data", JSON.stringify(updatedData));
   };
@@ -44,6 +45,12 @@ function App() {
     );
     setData(updatedData);
     localStorage.setItem("data", JSON.stringify(updatedData));
+  };
+
+  const handleSaveData = (index, updatedData) => {
+    const updatedDataList = data.map((item, i) => (i === index ? updatedData : item));
+    setData(updatedDataList);
+    localStorage.setItem("data", JSON.stringify(updatedDataList));
   };
 
   return (
@@ -64,6 +71,10 @@ function App() {
         <Route
           path="/view"
           element={user ? <View data={data} onDelete={handleDeleteData} onToggleStatus={handleToggleStatus} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/edit"
+          element={user ? <Edit onSaveData={handleSaveData} /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

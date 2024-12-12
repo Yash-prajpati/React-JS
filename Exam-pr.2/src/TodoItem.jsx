@@ -5,7 +5,6 @@ const TodoItem = ({ task, onDelete, onToggleComplete }) => {
     <div
       style={{
         display: "flex",
-        alignItems: "center",
         justifyContent: "space-between",
         marginBottom: "10px",
         padding: "10px",
@@ -14,39 +13,16 @@ const TodoItem = ({ task, onDelete, onToggleComplete }) => {
       }}
     >
       <div>
-        <h3 style={{ margin: "0", textDecoration: task.completed ? "line-through" : "none" }}>
+        <h3 style={{ textDecoration: task.completed ? "line-through" : "none" }}>
           {task.name}
         </h3>
-        <p style={{ margin: "0", color: "gray" }}>{task.description}</p>
+        <p>{task.description}</p>
       </div>
       <div>
-        <button
-          onClick={() => onToggleComplete(task.id)}
-          style={{
-            marginRight: "10px",
-            background: task.completed ? "green" : "orange",
-            color: "white",
-            border: "none",
-            borderRadius: "3px",
-            padding: "5px 10px",
-            cursor: "pointer",
-          }}
-        >
+        <button onClick={() => onToggleComplete(task.id)}>
           {task.completed ? "Completed" : "Complete"}
         </button>
-        <button
-          onClick={() => onDelete(task.id)}
-          style={{
-            background: "red",
-            color: "white",
-            border: "none",
-            borderRadius: "3px",
-            padding: "5px 10px",
-            cursor: "pointer",
-          }}
-        >
-          Delete
-        </button>
+        <button onClick={() => onDelete(task.id)}>Delete</button>
       </div>
     </div>
   );

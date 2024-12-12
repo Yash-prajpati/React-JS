@@ -16,7 +16,7 @@ function Add({ onAddData }) {
     setUsername("");
     setEmail("");
     setPhone("");
-    navigate("/view");
+    navigate("/view"); // Redirect to view page after adding data
   };
 
   return (
@@ -91,6 +91,14 @@ function Add({ onAddData }) {
                   </button>
                 </div>
               </form>
+              <div className="d-grid mt-3">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => navigate("/view")}
+                >
+                  View All Data
+                </button>
+              </div>
             </div>
           </div>
         </div>

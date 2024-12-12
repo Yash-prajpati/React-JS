@@ -8,39 +8,29 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     if (username.trim() && password.trim()) {
-      // Save user details to localStorage (for simplicity)
-      localStorage.setItem("user", JSON.stringify({ username, password }));
-      // Redirect to Todo page
+      console.log("Signed up:", { username, password }); // Debug log
       navigate("/todos");
     } else {
-      alert("Please fill out all fields");
+      alert("Please fill in all fields.");
     }
   };
 
   return (
-    <div style={{ padding: "20px", textAlign: "center", fontFamily: "Arial, sans-serif" }}>
+    <div style={{ padding: "20px" }}>
       <h1>Sign Up</h1>
-      <div style={{ marginBottom: "10px" }}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          style={{ marginRight: "10px", padding: "5px" }}
-        />
-      </div>
-      <div style={{ marginBottom: "10px" }}>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ marginRight: "10px", padding: "5px" }}
-        />
-      </div>
-      <button onClick={handleSignUp} style={{ padding: "10px 20px", cursor: "pointer" }}>
-        Sign Up
-      </button>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSignUp}>Sign Up</button>
     </div>
   );
 };

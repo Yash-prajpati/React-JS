@@ -17,9 +17,7 @@ const TodoApp = () => {
     }
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
+  const deleteTask = (id) => setTasks(tasks.filter((task) => task.id !== id));
 
   const toggleComplete = (id) => {
     setTasks(
@@ -31,36 +29,30 @@ const TodoApp = () => {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>My Todos</h1>
-      <div style={{ marginBottom: "20px" }}>
+      <h1>Todo List</h1>
+      <div>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Task Name"
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
-          style={{ marginRight: "10px", padding: "5px" }}
         />
         <input
           type="text"
           placeholder="Description"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
-          style={{ marginRight: "10px", padding: "5px" }}
         />
-        <button onClick={addTask} style={{ padding: "5px 10px" }}>
-          Add Task
-        </button>
+        <button onClick={addTask}>Add Task</button>
       </div>
-      <div>
-        {tasks.map((task) => (
-          <TodoItem
-            key={task.id}
-            task={task}
-            onDelete={deleteTask}
-            onToggleComplete={toggleComplete}
-          />
-        ))}
-      </div>
+      {tasks.map((task) => (
+        <TodoItem
+          key={task.id}
+          task={task}
+          onDelete={deleteTask}
+          onToggleComplete={toggleComplete}
+        />
+      ))}
     </div>
   );
 };
