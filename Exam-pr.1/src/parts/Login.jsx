@@ -9,15 +9,12 @@ function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // In a real app, you would authenticate with a backend here.
-    // For simplicity, we will assume the login is successful if the user exists in localStorage.
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       if (parsedUser.email === email && parsedUser.password === password) {
-        onLogin(parsedUser); // User is authenticated, log them in
-        navigate("/add"); // Redirect to the "Add" page
+        onLogin(parsedUser);
+        navigate("/add");
       } else {
         alert("Invalid email or password");
       }
@@ -61,16 +58,16 @@ function Login({ onLogin }) {
                 <div className="d-grid">
                   <button type="submit" className="btn btn-primary">Login</button>
                 </div>
+                <p className="mt-3 text-center">
+                  Don't have an account?{" "}
+                  <button
+                    className="btn btn-link"
+                    onClick={() => navigate("/")}
+                  >
+                    Sign Up
+                  </button>
+                </p>
               </form>
-              <p className="mt-3 text-center">
-                Don't have an account?{" "}
-                <button
-                  className="btn btn-link"
-                  onClick={() => navigate("/")}
-                >
-                  Sign Up
-                </button>
-              </p>
             </div>
           </div>
         </div>

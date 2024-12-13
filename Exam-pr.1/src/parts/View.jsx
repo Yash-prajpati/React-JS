@@ -1,21 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"; // Make sure you have Bootstrap installed
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function View({ data, onDelete, onToggleStatus }) {
   const navigate = useNavigate();
-
-  const handleDelete = (index) => {
-    onDelete(index);
-  };
-
-  const handleEdit = (index) => {
-    navigate("/edit", { state: { index, data: data[index] } });
-  };
-
-  const handleToggleStatus = (index) => {
-    onToggleStatus(index);
-  };
 
   return (
     <div className="container mt-5">
@@ -61,19 +49,19 @@ function View({ data, onDelete, onToggleStatus }) {
                         <td>
                           <button
                             className="btn btn-warning btn-sm me-2"
-                            onClick={() => handleEdit(index)} // Edit button
+                            onClick={() => navigate("/edit", { state: { index, data: item } })}
                           >
                             Edit
                           </button>
                           <button
                             className="btn btn-danger btn-sm me-2"
-                            onClick={() => handleDelete(index)} // Delete button
+                            onClick={() => onDelete(index)}
                           >
                             Delete
                           </button>
                           <button
                             className="btn btn-info btn-sm"
-                            onClick={() => handleToggleStatus(index)} // Toggle status button
+                            onClick={() => onToggleStatus(index)}
                           >
                             {item.isActive ? "Deactivate" : "Activate"}
                           </button>
@@ -84,10 +72,7 @@ function View({ data, onDelete, onToggleStatus }) {
                 </table>
               )}
               <div className="d-grid mt-4">
-                <button
-                  className="btn btn-primary"
-                  onClick={() => navigate("/add")}
-                >
+                <button className="btn btn-primary" onClick={() => navigate("/add")}>
                   Add More Data
                 </button>
               </div>

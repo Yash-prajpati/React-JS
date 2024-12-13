@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Edit({ onSaveData }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { index, data } = location.state || {};
+  const { index, data } = location.state || {}; // data is an object, not an array
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -23,9 +23,15 @@ function Edit({ onSaveData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedData = { name, username, email, phone };
-    onSaveData(index, updatedData); // Save the edited data
-    navigate("/view"); // Navigate back to the View page
+    const updatedData = {
+      name,
+      username,
+      email,
+      phone,
+      isActive: data.isActive, // Using data.isActive instead of data[index].isActive
+    };
+    onSaveData(index, updatedData); // onSaveData will be passed to the parent to update the data
+    navigate("/view");
   };
 
   return (

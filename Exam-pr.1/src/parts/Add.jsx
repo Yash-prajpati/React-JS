@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Add({ onAddData }) {
+function Add({ onAddData, onLogout }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -11,12 +11,13 @@ function Add({ onAddData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddData({ name, username, email, phone });
+    const newData = { name, username, email, phone };
+    onAddData(newData);
     setName("");
     setUsername("");
     setEmail("");
     setPhone("");
-    navigate("/view"); // Redirect to view page after adding data
+    navigate("/view");
   };
 
   return (
@@ -30,73 +31,67 @@ function Add({ onAddData }) {
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
+                  <label htmlFor="name" className="form-label">Name</label>
                   <input
                     type="text"
                     className="form-control"
                     id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
                     required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
-                    Username
-                  </label>
+                  <label htmlFor="username" className="form-label">Username</label>
                   <input
                     type="text"
                     className="form-control"
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Enter your username"
                     required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="form-label">Email</label>
                   <input
                     type="email"
                     className="form-control"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
                     required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="phone" className="form-label">
-                    Phone
-                  </label>
+                  <label htmlFor="phone" className="form-label">Phone</label>
                   <input
                     type="tel"
                     className="form-control"
                     id="phone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter your phone number"
                     required
                   />
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-primary">
-                    Add
-                  </button>
+                  <button type="submit" className="btn btn-primary">Add</button>
                 </div>
               </form>
               <div className="d-grid mt-3">
                 <button
                   className="btn btn-secondary"
+                  onClick={onLogout}
+                >
+                  Logout
+                </button>
+              </div>
+              <div className="d-grid mt-3">
+                <button
+                  className="btn btn-info"
                   onClick={() => navigate("/view")}
                 >
-                  View All Data
+                  View Data
                 </button>
               </div>
             </div>

@@ -27,14 +27,19 @@ function App() {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
+
   const handleAddData = (newData) => {
     const updatedData = [...data, { ...newData, isActive: true }];
     setData(updatedData);
     localStorage.setItem("data", JSON.stringify(updatedData));
   };
 
-  const handleDeleteData = (index) => {
-    const updatedData = data.filter((item, i) => i !== index);
+  const handleDelete = (index) => {
+    const updatedData = data.filter((_, i) => i !== index);
     setData(updatedData);
     localStorage.setItem("data", JSON.stringify(updatedData));
   };
@@ -48,9 +53,9 @@ function App() {
   };
 
   const handleSaveData = (index, updatedData) => {
-    const updatedDataList = data.map((item, i) => (i === index ? updatedData : item));
-    setData(updatedDataList);
-    localStorage.setItem("data", JSON.stringify(updatedDataList));
+    const updatedList = data.map((item, i) => (i === index ? updatedData : item));
+    setData(updatedList);
+    localStorage.setItem("data", JSON.stringify(updatedList));
   };
 
   return (
@@ -58,7 +63,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={!user ? <Signup onSignup={handleSignup} onLogin={handleLogin} /> : <Navigate to="/add" />}
+          element={!user ? <Signup onSignup={handleSignup} /> : <Navigate to="/add" />}
         />
         <Route
           path="/login"
@@ -66,15 +71,33 @@ function App() {
         />
         <Route
           path="/add"
-          element={user ? <Add onAddData={handleAddData} /> : <Navigate to="/login" />}
+          element={
+            user ? (
+              <Add onAddData={handleAddData} onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/view"
-          element={user ? <View data={data} onDelete={handleDeleteData} onToggleStatus={handleToggleStatus} /> : <Navigate to="/login" />}
+          element={
+            user ? (
+              <View
+                data={data}
+                onDelete={handleDelete}
+                onToggleStatus={handleToggleStatus}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/edit"
-          element={user ? <Edit onSaveData={handleSaveData} /> : <Navigate to="/login" />}
+          element={
+            user ? <Edit onSaveData={handleSaveData} /> : <Navigate to="/login" />
+          }
         />
       </Routes>
     </Router>

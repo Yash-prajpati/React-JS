@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Signup({ onSignup, onLogin }) {
+function Signup({ onSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignup({ email, password });
-    navigate("/add"); // Redirect to the "Add" page after signup
+    const existingUser = localStorage.getItem("user");
+    if (existingUser) {
+      alert("An account already exists. Please log in.");
+      navigate("/login");
+    } else {
+      onSignup({ email, password });
+      navigate("/add");
+    }
   };
 
   return (
@@ -48,16 +54,16 @@ function Signup({ onSignup, onLogin }) {
                 <div className="d-grid">
                   <button type="submit" className="btn btn-primary">Signup</button>
                 </div>
+                <p className="mt-3 text-center">
+                  Already have an account?{" "}
+                  <button
+                    className="btn btn-link"
+                    onClick={() => navigate("/login")}
+                  >
+                    Login
+                  </button>
+                </p>
               </form>
-              <p className="mt-3 text-center">
-                Already have an account?{" "}
-                <button
-                  className="btn btn-link"
-                  onClick={() => navigate("/login")}
-                >
-                  Login
-                </button>
-              </p>
             </div>
           </div>
         </div>
