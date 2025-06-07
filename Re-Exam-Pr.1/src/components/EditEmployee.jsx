@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AddEmployee.css';
+import './AddEmployee.css'; // Assuming shared styles for Add and Edit
 
 const EditEmployee = () => {
   const { id } = useParams();
@@ -42,9 +42,9 @@ const EditEmployee = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="card shadow-lg p-4 border-0 rounded">
-        <h2 className="text-center mb-4 text-primary">Edit Employee</h2>
+    <div className="container-fluid bg-light min-vh-100 d-flex flex-column justify-content-center align-items-center">
+      <div className="card shadow-lg p-4 border-0 rounded" style={{ maxWidth: '600px', width: '100%' }}>
+        <h2 className="text-center mb-4 text-primary fw-bold">Edit Employee</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Full Name</label>
@@ -113,12 +113,14 @@ const EditEmployee = () => {
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary btn-lg">Update</button>
+            <button type="submit" className="btn btn-success btn-lg">
+              Update Employee
+            </button>
           </div>
         </form>
         <div className="d-grid mt-3">
           <button className="btn btn-secondary btn-lg" onClick={handleViewEmployees}>
-            View Employees
+            View All Employees
           </button>
         </div>
       </div>
